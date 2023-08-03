@@ -1,0 +1,971 @@
+#VRML_SIM R2022b utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the Rex
+# Extracted from: /home/roslab/my_mini_spot/src/Pose/urdf/spot_old_2.urdf
+
+PROTO Rex [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "Rex"  # Is `Robot.name`.
+  field  SFString    controller      "void" # Is `Robot.controller`.
+  field  MFString    controllerArgs  []     # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""     # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE  # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE   # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE  # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      Transform {
+        translation -0.045000 -0.060000 -0.015000
+        scale 0.001000 0.001000 0.001000
+        children [
+          Shape {
+            appearance DEF black PBRAppearance {
+              baseColor 0.500000 0.500000 0.500000
+              roughness 1.000000
+              metalness 0
+            }
+            geometry DEF mainbody Mesh {
+              url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/mainbody.stl"
+            }
+          }
+        ]
+      }
+      Solid {
+        children [
+          Transform {
+            translation -0.040000 -0.060000 -0.014000
+            scale 0.001000 0.001000 0.001000
+            children [
+              Shape {
+                appearance DEF yellow PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry DEF frontpart Mesh {
+                  url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/frontpart.stl"
+                }
+              }
+            ]
+          }
+        ]
+        name "chassis_front_link"
+        boundingObject Transform {
+          translation -0.145000 0.000000 0.000000
+          children [
+            Box {
+               size 0.058000 0.110000 0.070000
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.050000
+          centerOfMass [ 0.000000 0.000000 0.000000 ]
+          inertiaMatrix [
+            1.000000e+02 1.000000e+02 1.000000e+02
+            0.000000e+00 0.000000e+00 0.000000e+00
+          ]
+        }
+      }
+      Solid {
+        children [
+          Transform {
+            translation -0.040000 -0.060000 -0.014000
+            scale 0.001000 0.001000 0.001000
+            children [
+              Shape {
+                appearance USE yellow
+                geometry DEF backpart Mesh {
+                  url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/backpart.stl"
+                }
+              }
+            ]
+          }
+        ]
+        name "chassis_rear_link"
+        boundingObject Transform {
+          translation 0.135000 0.000000 0.000000
+          children [
+            Box {
+               size 0.040000 0.110000 0.070000
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.050000
+          centerOfMass [ 0.000000 0.000000 0.000000 ]
+          inertiaMatrix [
+            1.000000e+02 1.000000e+02 1.000000e+02
+            0.000000e+00 0.000000e+00 0.000000e+00
+          ]
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor -0.093000 -0.036000 0.000000
+          staticFriction 0.5
+        }
+        device [
+          RotationalMotor {
+            name "motor_front_left_shoulder"
+            maxVelocity 0.7
+            minPosition -1.0
+            maxPosition 1.0
+            maxTorque 100.0
+          }
+          PositionSensor {
+            name "motor_front_left_shoulder_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.093000 -0.036000 0.000000
+          children [
+            Transform {
+              translation -0.135000 -0.020000 -0.010000
+              scale 0.001000 0.001000 0.001000
+              children [
+                Shape {
+                  appearance USE black
+                  geometry DEF lshoulder Mesh {
+                    url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/lshoulder.stl"
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 1.000000 0.000000
+                anchor 0.000000 -0.052000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "motor_front_left_leg"
+                  maxVelocity 0.5
+                  minPosition -2.17
+                  maxPosition 0.97
+                  maxTorque 100.0
+                }
+                PositionSensor {
+                  name "motor_front_left_leg_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0.000000 -0.052000 0.000000
+                children [
+                  Transform {
+                    translation -0.125000 0.040000 -0.020000
+                    scale 0.001000 0.001000 0.001000
+                    children [
+                      Shape {
+                        appearance USE black
+                        geometry DEF larm Mesh {
+                          url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/larm.stl"
+                        }
+                      }
+                    ]
+                  }
+                  Solid {
+                    children [
+                      Transform {
+                        translation -0.125000 0.040000 -0.020000
+                        scale 0.001000 0.001000 0.001000
+                        children [
+                          Shape {
+                            appearance USE yellow
+                            geometry DEF larm_cover Mesh {
+                              url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/larm_cover.stl"
+                            }              translation -0.135000 -0.020000 -0.010000
+              scale 0.001000 0.001000 0.001000
+              children [
+                Shape {
+                  appearance USE black
+                  geometry DEF lshoulder Mesh {
+                    url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/lshoulder.stl"
+                  }
+                }
+              ]
+                          }
+                        ]
+                      }
+                    ]
+                    name "front_left_leg_link_cover"
+                    physics Physics {
+                      density -1
+                      mass 0.020000
+                    }
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 1.000000 0.000000
+                      anchor -0.010000 0.000000 -0.120000
+                      staticFriction 0.5
+                    }
+                    device [
+                      RotationalMotor {
+                        name "foot_motor_front_left"
+                        maxVelocity 0.5
+                        minPosition -0.1
+                        maxPosition 2.59
+                        maxTorque 100.0
+                      }
+                      PositionSensor {
+                        name "foot_motor_front_left_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation -0.010000 0.000000 -0.120000
+                      children [
+                        Transform {
+                          translation -0.120000 0.040000 0.100000
+                          scale 0.001000 0.001000 0.001000
+                          children [
+                            Shape {
+                              appearance USE black
+                              geometry DEF lfoot Mesh {
+                                url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/lfoot.stl"
+                              }
+                            }
+                          ]
+                        }
+                        Solid {
+                          translation 0.000000 0.000000 -0.115000
+                          children [
+                            Transform {
+                              translation 0.000000 -0.010000 0.000000
+                              rotation 0.000000 -1.000000 0.000000 0.400100
+                              scale 0.001000 0.001000 0.001000
+                              children [
+                                Shape {
+                                  appearance DEF grey PBRAppearance {
+                                    baseColor 0.500000 0.500000 0.500000
+                                    roughness 1.000000
+                                    metalness 0
+                                  }
+                                  geometry DEF foot Mesh {
+                                    url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/foot.stl"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                          name "front_left_toe_link"
+                          boundingObject Transform {
+                            translation 0.000000 -0.010000 0.000000
+                            rotation 0.000000 -1.000000 0.000000 0.400100
+                            scale 0.001000 0.001000 0.001000
+                            children [
+                              USE foot
+                            ]
+                          }
+                          physics Physics {
+                            density -1
+                            mass 0.005000
+                            centerOfMass [ 0.000000 0.000000 0.000000 ]
+                            inertiaMatrix [
+                              1.000000e+02 1.000000e+02 1.000000e+02
+                              0.000000e+00 0.000000e+00 0.000000e+00
+                            ]
+                          }
+                        }
+                      ]
+                      name "front_left_foot_link"
+                      boundingObject Transform {
+                        translation 0.000000 0.000000 -0.050000
+                        children [
+                          Box {
+                             size 0.026000 0.020000 0.115000
+                          }
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.100000
+                        centerOfMass [ 0.000000 0.000000 0.000000 ]
+                        inertiaMatrix [
+                          1.000000e+02 1.000000e+02 1.000000e+02
+                          0.000000e+00 0.000000e+00 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "front_left_leg_link"
+                boundingObject Transform {
+                  translation 0.000000 0.000000 -0.050000
+                  children [
+                    Box {
+                       size 0.028000 0.036000 0.120000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.100000
+                  centerOfMass [ 0.000000 0.000000 0.000000 ]
+                  inertiaMatrix [
+                    1.000000e+02 1.000000e+02 1.000000e+02
+                    0.000000e+00 0.000000e+00 0.000000e+00
+                  ]
+                }
+              }
+            }
+          ]
+          name "front_left_shoulder_link"
+          boundingObject Box {
+             size 0.044000 0.038000 0.070000
+          }
+          physics Physics {
+            density -1
+            mass 0.100000
+            centerOfMass [ 0.000000 0.000000 0.000000 ]
+            inertiaMatrix [
+              1.000000e+02 1.000000e+02 1.000000e+02
+              0.000000e+00 0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor -0.093000 0.036000 0.000000
+          staticFriction 0.5
+        }
+        device [
+          RotationalMotor {
+            name "motor_front_right_shoulder"
+            maxVelocity 0.7
+            minPosition -1.0
+            maxPosition 1.0
+            maxTorque 100.0
+          }
+          PositionSensor {
+            name "motor_front_right_shoulder_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.093000 0.036000 0.000000
+          children [
+            Transform {
+              translation -0.135000 -0.090000 -0.010000
+              scale 0.001000 0.001000 0.001000
+              children [
+                Shape {
+                  appearance USE black
+                  geometry DEF rshoulder Mesh {
+                    url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/rshoulder.stl"
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 1.000000 0.000000
+                anchor 0.000000 0.052000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "motor_front_right_leg"
+                  maxVelocity 0.5
+                  minPosition -2.17
+                  maxPosition 0.97
+                  maxTorque 100.0
+                }
+                PositionSensor {
+                  name "motor_front_right_leg_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0.000000 0.052000 0.000000
+                children [
+                  Transform {
+                    translation -0.125000 -0.150000 -0.020000
+                    scale 0.001000 0.001000 0.001000
+                    children [
+                      Shape {
+                        appearance USE black
+                        geometry DEF rarm Mesh {
+                          url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/rarm.stl"
+                        }
+                      }
+                    ]
+                  }
+                  Solid {
+                    children [
+                      Transform {
+                        translation -0.125000 -0.150000 -0.020000
+                        scale 0.001000 0.001000 0.001000
+                        children [
+                          Shape {
+                            appearance USE yellow
+                            geometry DEF rarm_cover Mesh {
+                              url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/rarm_cover.stl"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                    name "front_right_leg_link_cover"
+                    physics Physics {
+                      density -1
+                      mass 0.020000
+                    }
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 1.000000 0.000000
+                      anchor -0.010000 0.000000 -0.120000
+                      staticFriction 0.5
+                    }
+                    device [
+                      RotationalMotor {
+                        name "foot_motor_front_right"
+                        maxVelocity 0.5
+                        minPosition -0.1
+                        maxPosition 2.59
+                        maxTorque 100.0
+                      }
+                      PositionSensor {
+                        name "foot_motor_front_right_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation -0.010000 0.000000 -0.120000
+                      children [
+                        Transform {
+                          translation -0.120000 -0.150000 0.100000
+                          scale 0.001000 0.001000 0.001000
+                          children [
+                            Shape {
+                              appearance USE black
+                              geometry DEF rfoot Mesh {
+                                url "/home/roslab/my_mini_spot/src/Pose/urdf/stl/rfoot.stl"
+                              }
+                            }
+                          ]
+                        }
+                        Solid {
+                          translation 0.000000 0.000000 -0.115000
+                          children [
+                            Transform {
+                              translation 0.000000 -0.010000 0.000000
+                              rotation 0.000000 -1.000000 0.000000 0.400100
+                              scale 0.001000 0.001000 0.001000
+                              children [
+                                Shape {
+                                  appearance USE grey
+                                  geometry USE foot
+                                }
+                              ]
+                            }
+                          ]
+                          name "front_right_toe_link"
+                          boundingObject Transform {
+                            translation 0.000000 -0.010000 0.000000
+                            rotation 0.000000 -1.000000 0.000000 0.400100
+                            scale 0.001000 0.001000 0.001000
+                            children [
+                              USE foot
+                            ]
+                          }
+                          physics Physics {
+                            density -1
+                            mass 0.005000
+                            centerOfMass [ 0.000000 0.000000 0.000000 ]
+                            inertiaMatrix [
+                              1.000000e+02 1.000000e+02 1.000000e+02
+                              0.000000e+00 0.000000e+00 0.000000e+00
+                            ]
+                          }
+                        }
+                      ]
+                      name "front_right_foot_link"
+                      boundingObject Transform {
+                        translation 0.000000 0.000000 -0.050000
+                        children [
+                          Box {
+                             size 0.026000 0.020000 0.115000
+                          }
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.100000
+                        centerOfMass [ 0.000000 0.000000 0.000000 ]
+                        inertiaMatrix [
+                          1.000000e+02 1.000000e+02 1.000000e+02
+                          0.000000e+00 0.000000e+00 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "front_right_leg_link"
+                boundingObject Transform {
+                  translation 0.000000 0.000000 -0.050000
+                  children [
+                    Box {
+                       size 0.028000 0.036000 0.120000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.100000
+                  centerOfMass [ 0.000000 0.000000 0.000000 ]
+                  inertiaMatrix [
+                    1.000000e+02 1.000000e+02 1.000000e+02
+                    0.000000e+00 0.000000e+00 0.000000e+00
+                  ]
+                }
+              }
+            }
+          ]
+          name "front_right_shoulder_link"
+          boundingObject Box {
+             size 0.044000 0.038000 0.070000
+          }
+          physics Physics {
+            density -1
+            mass 0.100000
+            centerOfMass [ 0.000000 0.000000 0.000000 ]
+            inertiaMatrix [
+              1.000000e+02 1.000000e+02 1.000000e+02
+              0.000000e+00 0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor 0.093000 -0.036000 0.000000
+          staticFriction 0.5
+        }
+        device [
+          RotationalMotor {
+            name "motor_rear_left_shoulder"
+            maxVelocity 0.7
+            minPosition -1.0
+            maxPosition 1.0
+            maxTorque 100.0
+          }
+          PositionSensor {
+            name "motor_rear_left_shoulder_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.093000 -0.036000 0.000000
+          children [
+            Transform {
+              translation -0.135000 -0.020000 -0.010000
+              scale 0.001000 0.001000 0.001000
+              children [
+                Shape {
+                  appearance USE black
+                  geometry USE lshoulder
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 1.000000 0.000000
+                anchor 0.000000 -0.052000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "motor_rear_left_leg"
+                  maxVelocity 0.5
+                  minPosition -2.17
+                  maxPosition 0.97
+                  maxTorque 100.0
+                }
+                PositionSensor {
+                  name "motor_rear_left_leg_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0.000000 -0.052000 0.000000
+                children [
+                  Transform {
+                    translation -0.125000 0.040000 -0.020000
+                    scale 0.001000 0.001000 0.001000
+                    children [
+                      Shape {
+                        appearance USE black
+                        geometry USE larm
+                      }
+                    ]
+                  }
+                  Solid {
+                    children [
+                      Transform {
+                        translation -0.125000 0.040000 -0.020000
+                        scale 0.001000 0.001000 0.001000
+                        children [
+                          Shape {
+                            appearance USE yellow
+                            geometry USE larm_cover
+                          }
+                        ]
+                      }
+                    ]
+                    name "rear_left_leg_link_cover"
+                    physics Physics {
+                      density -1
+                      mass 0.020000
+                    }
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 1.000000 0.000000
+                      anchor -0.010000 0.000000 -0.120000
+                      staticFriction 0.5
+                    }
+                    device [
+                      RotationalMotor {
+                        name "foot_motor_rear_left"
+                        maxVelocity 0.5
+                        minPosition -0.1
+                        maxPosition 2.59
+                        maxTorque 100.0
+                      }
+                      PositionSensor {
+                        name "foot_motor_rear_left_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation -0.010000 0.000000 -0.120000
+                      children [
+                        Transform {
+                          translation -0.120000 0.040000 0.100000
+                          scale 0.001000 0.001000 0.001000
+                          children [
+                            Shape {
+                              appearance USE black
+                              geometry USE lfoot
+                            }
+                          ]
+                        }
+                        Solid {
+                          translation 0.000000 0.000000 -0.115000
+                          children [
+                            Transform {
+                              translation 0.000000 -0.010000 0.000000
+                              rotation 0.000000 -1.000000 0.000000 0.400100
+                              scale 0.001000 0.001000 0.001000
+                              children [
+                                Shape {
+                                  appearance USE grey
+                                  geometry USE foot
+                                }
+                              ]
+                            }
+                          ]
+                          name "rear_left_toe_link"
+                          boundingObject Transform {
+                            translation 0.000000 -0.010000 0.000000
+                            rotation 0.000000 -1.000000 0.000000 0.400100
+                            scale 0.001000 0.001000 0.001000
+                            children [
+                              USE foot
+                            ]
+                          }
+                          physics Physics {
+                            density -1
+                            mass 0.005000
+                            centerOfMass [ 0.000000 0.000000 0.000000 ]
+                            inertiaMatrix [
+                              1.000000e+02 1.000000e+02 1.000000e+02
+                              0.000000e+00 0.000000e+00 0.000000e+00
+                            ]
+                          }
+                        }
+                      ]
+                      name "rear_left_foot_link"
+                      boundingObject Transform {
+                        translation 0.000000 0.000000 -0.050000
+                        children [
+                          Box {
+                             size 0.026000 0.020000 0.115000
+                          }
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.100000
+                        centerOfMass [ 0.000000 0.000000 0.000000 ]
+                        inertiaMatrix [
+                          1.000000e+02 1.000000e+02 1.000000e+02
+                          0.000000e+00 0.000000e+00 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "rear_left_leg_link"
+                boundingObject Transform {
+                  translation 0.000000 0.000000 -0.050000
+                  children [
+                    Box {
+                       size 0.028000 0.036000 0.120000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.100000
+                  centerOfMass [ 0.000000 0.000000 0.000000 ]
+                  inertiaMatrix [
+                    1.000000e+02 1.000000e+02 1.000000e+02
+                    0.000000e+00 0.000000e+00 0.000000e+00
+                  ]
+                }
+              }
+            }
+          ]
+          name "rear_left_shoulder_link"
+          boundingObject Box {
+             size 0.044000 0.038000 0.070000
+          }
+          physics Physics {
+            density -1
+            mass 0.100000
+            centerOfMass [ 0.000000 0.000000 0.000000 ]
+            inertiaMatrix [
+              1.000000e+02 1.000000e+02 1.000000e+02
+              0.000000e+00 0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor 0.093000 0.036000 0.000000
+          staticFriction 0.5
+        }
+        device [
+          RotationalMotor {
+            name "motor_rear_right_shoulder"
+            maxVelocity 0.7
+            minPosition -1.0
+            maxPosition 1.0
+            maxTorque 100.0
+          }
+          PositionSensor {
+            name "motor_rear_right_shoulder_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.093000 0.036000 0.000000
+          children [
+            Transform {
+              translation -0.135000 -0.090000 -0.010000
+              scale 0.001000 0.001000 0.001000
+              children [
+                Shape {
+                  appearance USE black
+                  geometry USE rshoulder
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 1.000000 0.000000
+                anchor 0.000000 0.052000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "motor_rear_right_leg"
+                  maxVelocity 0.5
+                  minPosition -2.17
+                  maxPosition 0.97
+                  maxTorque 100.0
+                }
+                PositionSensor {
+                  name "motor_rear_right_leg_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0.000000 0.052000 0.000000
+                children [
+                  Transform {
+                    translation -0.125000 -0.150000 -0.020000
+                    scale 0.001000 0.001000 0.001000
+                    children [
+                      Shape {
+                        appearance USE black
+                        geometry USE rarm
+                      }
+                    ]
+                  }
+                  Solid {
+                    children [
+                      Transform {
+                        translation -0.125000 -0.150000 -0.020000
+                        scale 0.001000 0.001000 0.001000
+                        children [
+                          Shape {
+                            appearance USE yellow
+                            geometry USE rarm_cover
+                          }
+                        ]
+                      }
+                    ]
+                    name "rear_right_leg_link_cover"
+                    physics Physics {
+                      density -1
+                      mass 0.020000
+                    }
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 1.000000 0.000000
+                      anchor -0.010000 0.000000 -0.120000
+                      staticFriction 0.5
+                    }
+                    device [
+                      RotationalMotor {
+                        name "foot_motor_rear_right"
+                        maxVelocity 0.5
+                        minPosition -0.1
+                        maxPosition 2.59
+                        maxTorque 100.0
+                      }
+                      PositionSensor {
+                        name "foot_motor_rear_right_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation -0.010000 0.000000 -0.120000
+                      children [
+                        Transform {
+                          translation -0.120000 -0.150000 0.100000
+                          scale 0.001000 0.001000 0.001000
+                          children [
+                            Shape {
+                              appearance USE black
+                              geometry USE rfoot
+                            }
+                          ]
+                        }
+                        Solid {
+                          translation 0.000000 0.000000 -0.115000
+                          children [
+                            Transform {
+                              translation 0.000000 -0.010000 0.000000
+                              rotation 0.000000 -1.000000 0.000000 0.400100
+                              scale 0.001000 0.001000 0.001000
+                              children [
+                                Shape {
+                                  appearance USE grey
+                                  geometry USE foot
+                                }
+                              ]
+                            }
+                          ]
+                          name "rear_right_toe_link"
+                          boundingObject Transform {
+                            translation 0.000000 -0.010000 0.000000
+                            rotation 0.000000 -1.000000 0.000000 0.400100
+                            scale 0.001000 0.001000 0.001000
+                            children [
+                              USE foot
+                            ]
+                          }
+                          physics Physics {
+                            density -1
+                            mass 0.005000
+                            centerOfMass [ 0.000000 0.000000 0.000000 ]
+                            inertiaMatrix [
+                              1.000000e+02 1.000000e+02 1.000000e+02
+                              0.000000e+00 0.000000e+00 0.000000e+00
+                            ]
+                          }
+                        }
+                      ]
+                      name "rear_right_foot_link"
+                      boundingObject Transform {
+                        translation 0.000000 0.000000 -0.050000
+                        children [
+                          Box {
+                             size 0.026000 0.020000 0.115000
+                          }
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.100000
+                        centerOfMass [ 0.000000 0.000000 0.000000 ]
+                        inertiaMatrix [
+                          1.000000e+02 1.000000e+02 1.000000e+02
+                          0.000000e+00 0.000000e+00 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "rear_right_leg_link"
+                boundingObject Transform {
+                  translation 0.000000 0.000000 -0.050000
+                  children [
+                    Box {
+                       size 0.028000 0.036000 0.120000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.100000
+                  centerOfMass [ 0.000000 0.000000 0.000000 ]
+                  inertiaMatrix [
+                    1.000000e+02 1.000000e+02 1.000000e+02
+                    0.000000e+00 0.000000e+00 0.000000e+00
+                  ]
+                }
+              }
+            }
+          ]
+          name "rear_right_shoulder_link"
+          boundingObject Box {
+             size 0.044000 0.038000 0.070000
+          }
+          physics Physics {
+            density -1
+            mass 0.100000
+            centerOfMass [ 0.000000 0.000000 0.000000 ]
+            inertiaMatrix [
+              1.000000e+02 1.000000e+02 1.000000e+02
+              0.000000e+00 0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+    ]
+    name IS name
+    boundingObject Box {
+       size 0.140000 0.110000 0.070000
+    }
+    physics Physics {
+      density -1
+      mass 1.200000
+      centerOfMass [ 0.000000 0.000000 0.000000 ]
+      inertiaMatrix [
+        1.000000e+02 1.000000e+02 1.000000e+02
+        0.000000e+00 0.000000e+00 0.000000e+00
+      ]
+    }
+  }
+}
