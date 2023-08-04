@@ -4,7 +4,7 @@
 
 The SpotMini Quadruped Robot project is a culmination of cutting-edge technologies aimed at creating a highly capable and adaptable quadruped robot. 
 
-@@恰一张仿真和实际的图
+@@恰一张站立然后姿态控制的图
 
 #### **Mechanical Design and Fabrication**
 
@@ -18,7 +18,8 @@ Motor type Hiwonder  HTS-35
 
 IMU JY901B  ( 9-aixes )
 
-
+<img src="media/Hardware structure.png" alt="Image" width="50%">
+@@ 实物连接图
 
 #### Kinematic Pose Control
 
@@ -28,6 +29,7 @@ I've implemented sophisticated kinematic algorithms that enable precise control 
 
 robot kinematic refer to https://www.researchgate.net/publication/320307716_Inverse_Kinematic_Analysis_Of_A_Quadruped_Robot
 
+<img src="media/tajectory.svg" alt="Image" width="50%">
 
 
 @@恰一张仿真和实际的图
@@ -42,13 +44,15 @@ you can also refer to my another repository https://github.com/BruceXing24/quadr
 
 Here for spot_mini I just do one asix testing. 
 
-@@ 掐一个 gif
+<img src="media/self_balancing.gif" alt="Image" width="50%">
 
 #### **Walking and Locomotion:**
 
 The culmination of the project's efforts is the achievement of walking and dynamic locomotion. By implementing advanced gait generation techniques and motion planning algorithms, the robot can perform a variety of walking patterns with different speeds and styles.
 
 @@ 恰一张 轨迹曲线 和仿真中的曲线
+
+<img src="media/trotting.gif" alt="Image" width="50%">
 
 
 
