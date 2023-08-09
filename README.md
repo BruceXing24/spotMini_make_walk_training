@@ -19,7 +19,13 @@ Motor type Hiwonder  HTS-35
 IMU JY901B  ( 9-aixes )
 
 <img src="media/Hardware structure.png" alt="Image" width="50%">
-@@ 实物连接图
+
+<div style="display:inline-block">
+  <img src="media/hardware_1.jpg" alt="Image" width="20%"> 
+  <img src="media/hardware_2.jpg" alt="Image" width="20%">
+</div>
+
+
 
 #### Kinematic Pose Control
 
@@ -27,12 +33,9 @@ I've implemented sophisticated kinematic algorithms that enable precise control 
 
 ##### Calculation
 
-robot kinematic refer to https://www.researchgate.net/publication/320307716_Inverse_Kinematic_Analysis_Of_A_Quadruped_Robot
+robot kinematic refer to https://www.researchgate.net/publication/320307716_Inverse_Kinematic_Analysis_Of_A_Quadruped_Robot，Here I use a cosine curve as the trajectory curve of the foot
 
 <img src="media/tajectory.svg" alt="Image" width="50%">
-
-
-@@恰一张仿真和实际的图
 
 
 
@@ -98,8 +101,7 @@ ros2 launch spot_controller spot_controller.launch.py
 
 here show3D graph is built in matplotlib , about the rpy information you can subcribe to imu data(actual value ) or the theoretical calculation value from pose calculation.
 
-@@掐一张spot_controller 启动界面
-
+<img src="media/controller gui.png" alt="Image" width="50%">
 
 
 spotMini_training 
